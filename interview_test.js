@@ -1,16 +1,14 @@
 Feature('interview');
 
-Scenario('Login and logout',  ({ I }) => {
+Scenario('Login and logout',  ({ I, mainPage }) => {
     I.amOnPage('/')
-    I.fillField("input[name='UserName']", 'non-empty')
-    I.fillField("input[name='Password']", 'pwd')
-    I.click('#login')
-    I.see('Welcome, non-empty!')
+    mainPage.login("not-empty", "pwd")
+    I.see('Welcome, not-empty!')
     I.seeElement('//button[text()="Log Out"]')
     I.click('//button[text()="Log Out"]')
     I.see('User logged out')
-
 });
+
 Scenario('Invalid login',  ({ I }) => {
     I.amOnPage('/')
     I.click('#login')
